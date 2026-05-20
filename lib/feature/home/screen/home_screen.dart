@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:nemo/res/app_colors.dart';
-import 'package:nemo/res/text_style.dart';
+import 'package:flutter_starter_kit/res/app_colors.dart';
+import 'package:flutter_starter_kit/res/text_style.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -45,7 +45,7 @@ class HomeScreen extends StatelessWidget {
                     Text(
                       "Don't hesitate to contact us whether you have a suggestion on our improvement, a complain to discuss or an issue to solve.",
                       style: AppTextStyles.field2.copyWith(
-                        color: AppColors.onSurface.withOpacity(0.7),
+                        color: AppColors.onSurface.withValues(alpha: 0.7),
                         fontWeight: FontWeight.w500,
                       ),
                     ),
@@ -77,7 +77,7 @@ class HomeScreen extends StatelessWidget {
                     Text(
                       'Contact us on Social Media',
                       style: AppTextStyles.field2.copyWith(
-                        color: AppColors.onSurface.withOpacity(0.7),
+                        color: AppColors.onSurface.withValues(alpha: 0.7),
                         fontWeight: FontWeight.w700,
                       ),
                     ),
@@ -236,7 +236,7 @@ class _SocialMediaButton extends StatelessWidget {
             Text(
               label,
               style: AppTextStyles.action3.copyWith(
-                color: AppColors.onSurface.withOpacity(0.7),
+                color: AppColors.onSurface.withValues(alpha: 0.7),
               ),
             ),
           ],

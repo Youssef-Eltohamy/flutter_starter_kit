@@ -28,13 +28,11 @@ class MaskedTextInputFormatter extends TextInputFormatter {
   }
 }
 
-getInitialFormattedNumber(String format, String str) {
+String getInitialFormattedNumber(String format, String str) {
   if (str == '') return '';
   var mask = format;
-  str.nemo("").forEach((item) => mask = mask.replaceFirst('x', item));
-  return mask.replaceAll('x', "");
-}
-
-extension on String {
-  nemo(String s) {}
+  for (final item in str.split('')) {
+    mask = mask.replaceFirst('x', item);
+  }
+  return mask.replaceAll('x', '');
 }

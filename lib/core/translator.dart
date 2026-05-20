@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:nemo/utils/locale/app_localization.dart';
+import 'package:flutter_starter_kit/utils/locale/app_localization.dart';
 
 /// Always keep in mind that mixin is not multiple inheritance instead
 /// they are just a way to reuse our code from a class in multiple hierarchies

@@ -1,5 +1,5 @@
-import 'package:nemo/preferences/preferences_keys.dart';
-import 'package:nemo/utils/preferences/preferences_utils.dart';
+import 'package:flutter_starter_kit/preferences/preferences_keys.dart';
+import 'package:flutter_starter_kit/utils/preferences/preferences_utils.dart';
 
 class PreferencesManager {
   Future<bool> clearAllData() async {

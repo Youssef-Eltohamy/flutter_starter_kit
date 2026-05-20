@@ -1,3 +1,14 @@
 {
-    "cmake.sourceDirectory": "E:/programming- projects/nemo_25/linux"
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+        "source.fixAll": "explicit",
+        "source.organizeImports": "explicit"
+    },
+    "dart.lineLength": 80,
+    "[dart]": {
+        "editor.rulers": [
+            80
+        ],
+        "editor.defaultFormatter": "Dart-Code.dart-code"
+    }
 }

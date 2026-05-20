@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
-import 'package:nemo/apis/errors/error_api_helper.dart';
-import 'package:nemo/apis/errors/locale_dio_exceptions.dart';
-import 'package:nemo/core/failures.dart';
+import 'package:flutter_starter_kit/apis/errors/error_api_helper.dart';
+import 'package:flutter_starter_kit/apis/errors/locale_dio_exceptions.dart';
+import 'package:flutter_starter_kit/core/failures.dart';
 
 class ErrorApiModel extends Failure {
   final bool isMessageLocalizationKey;

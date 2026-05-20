@@ -1,6 +1,6 @@
 import 'dart:developer';
 
-import 'package:nemo/utils/feedback/feedback_toast.dart';
+import 'package:flutter_starter_kit/utils/feedback/feedback_toast.dart';
 
 class Developer {
   static const String sampleDeveloperError =

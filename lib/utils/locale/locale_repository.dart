@@ -1,7 +1,7 @@
-import 'package:nemo/apis/_base/dio_api_manager.dart';
-import 'package:nemo/apis/api_keys.dart';
-import 'package:nemo/preferences/preferences_manager.dart';
-import 'package:nemo/utils/locale/locale_cubit.dart';
+import 'package:flutter_starter_kit/apis/_base/dio_api_manager.dart';
+import 'package:flutter_starter_kit/apis/api_keys.dart';
+import 'package:flutter_starter_kit/preferences/preferences_manager.dart';
+import 'package:flutter_starter_kit/utils/locale/locale_cubit.dart';
 
 class LocaleRepository {
   final DioApiManager dioApiManager;

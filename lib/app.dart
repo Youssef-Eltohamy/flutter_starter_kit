@@ -8,23 +8,20 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get_it/get_it.dart';
 
 import 'package:keyboard_dismisser/keyboard_dismisser.dart';
-import 'package:nemo/apis/_base/dio_api_manager.dart';
-import 'package:nemo/feature/home/screen/home_screen.dart';
-import 'package:nemo/preferences/preferences_manager.dart';
-import 'package:nemo/res/app_colors.dart';
-import 'package:nemo/utils/locale/app_localization.dart';
-import 'package:nemo/utils/locale/app_localization_keys.dart';
-import 'package:nemo/utils/locale/locale_cubit.dart';
-import 'package:nemo/utils/locale/locale_repository.dart';
+import 'package:flutter_starter_kit/apis/_base/dio_api_manager.dart';
+import 'package:flutter_starter_kit/feature/home/screen/home_screen.dart';
+import 'package:flutter_starter_kit/preferences/preferences_manager.dart';
+import 'package:flutter_starter_kit/res/app_colors.dart';
+import 'package:flutter_starter_kit/utils/locale/app_localization.dart';
+import 'package:flutter_starter_kit/utils/locale/app_localization_keys.dart';
+import 'package:flutter_starter_kit/utils/locale/locale_cubit.dart';
+import 'package:flutter_starter_kit/utils/locale/locale_repository.dart';
 
-import 'package:nemo/utils/status_bar/statusbar_controller.dart';
-import 'package:nemo/utils/theme/app_theme.dart';
+import 'package:flutter_starter_kit/utils/status_bar/statusbar_controller.dart';
+import 'package:flutter_starter_kit/utils/theme/app_theme.dart';
 
-// ignore: must_be_immutable
 class MyApp extends StatelessWidget {
-  MyApp({Key? key}) : super(key: key);
-
-  PreferencesManager preferencesManager = GetIt.I<PreferencesManager>();
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -53,7 +50,7 @@ class MyApp extends StatelessWidget {
                     AppLocalizations.of(
                       context,
                     )?.translate(LocalizationKeys.appName) ??
-                    "nemo",
+                    "Flutter Starter Kit",
                 debugShowCheckedModeBanner: false,
                 theme: AppTheme(state).themeDataLight,
                 darkTheme: AppTheme(state).themeDataDark,
