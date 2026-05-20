@@ -1,68 +1,40 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_starter_kit/core/loading_manager.dart';
-import 'package:flutter_starter_kit/core/widgets/base_stateful_widget.dart';
 import 'package:flutter_starter_kit/utils/connectivity/connectivity_listener_widget.dart';
 
-abstract class BaseStatefulScreenWidget extends BaseStatefulWidget {
+/// Base for full screens. Stacks the screen content with a loading overlay
+/// (via [LoadingManager]) and an offline/connectivity banner — so every screen
+/// gets these for free. Implement [baseScreenBuild] in the state subclass.
+abstract class BaseStatefulScreenWidget extends StatefulWidget {
   const BaseStatefulScreenWidget({super.key});
-
-  @override
-  BaseScreenState baseCreateState() => baseScreenCreateState();
-
-  BaseScreenState baseScreenCreateState();
 }
 
 abstract class BaseScreenState<W extends BaseStatefulScreenWidget>
-    extends BaseState<W> with LoadingManager {
+    extends State<W> with LoadingManager<W> {
+  Widget baseScreenBuild(BuildContext context);
+
+  double? get connectivityStart => 20;
+  double? get connectivityEnd => 20;
+  double? get connectivityTop => null;
+  double? get connectivityBottom => 100;
+
   @override
-  Widget baseBuild(BuildContext context) {
+  Widget build(BuildContext context) {
     return Material(
       child: Stack(
         fit: StackFit.expand,
         children: [
           baseScreenBuild(context),
           loadingManagerWidget(),
-          _positionConnectivityWidget(),
+          PositionedDirectional(
+            start: connectivityStart,
+            end: connectivityEnd,
+            top: connectivityTop,
+            bottom: connectivityBottom,
+            child: const ConnectivityListenerWidget(),
+          ),
         ],
       ),
     );
   }
-
-  void changeState() {
-    setState(() {});
-  }
-
-  @override
-  void runChangeState() {
-    changeState();
-  }
-
-  @override
-  BaseScreenState provideTranslate() {
-    return this;
-  }
-
-  Widget baseScreenBuild(BuildContext context);
-
-  double? connectivityStartPadding = 20.w;
-  double? connectivityEndPadding = 20.w;
-  double? connectivityTopPadding;
-  double? connectivityBottomPadding = 100.h;
-
-  Widget _positionConnectivityWidget() {
-    return PositionedDirectional(
-      start: connectivityStartPadding,
-      end: connectivityEndPadding,
-      top: connectivityTopPadding,
-      bottom: connectivityBottomPadding,
-      child: ConnectivityListenerWidget(
-        connectedBackCallBack: connectedBackCallBack,
-        disConnectedCallBack: disConnectedCallBack,
-      ),
-    );
-  }
-
-  void connectedBackCallBack() {}
-  void disConnectedCallBack() {}
 }
