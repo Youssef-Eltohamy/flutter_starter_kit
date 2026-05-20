@@ -17,8 +17,9 @@ final GoRouter appRouter = GoRouter(
     GoRoute(
       path: AppRoutes.postDetails,
       name: AppRoutes.postDetailsName,
-      builder: (context, state) =>
-          PostDetailsScreen(post: state.extra as Post?),
+      builder: (context, state) => PostDetailsScreen(
+        post: state.extra is Post ? state.extra! as Post : null,
+      ),
     ),
     GoRoute(
       path: AppRoutes.onboarding,
