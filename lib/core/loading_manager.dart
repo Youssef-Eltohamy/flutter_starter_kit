@@ -1,44 +1,34 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_starter_kit/core/translator.dart';
+import 'package:flutter_starter_kit/core/extensions/context_extensions.dart';
 import 'package:flutter_starter_kit/utils/loaders/full_screen_loader_widget.dart';
 import 'package:flutter_starter_kit/utils/locale/app_localization_keys.dart';
 import 'package:flutter_starter_kit/utils/widgets/empty_widgets.dart';
 
-mixin LoadingManager {
-  void runChangeState();
+/// Adds a full-screen loading overlay to a [State]. Call [showLoading] /
+/// [hideLoading] (or the message variants) from the screen, and render
+/// [loadingManagerWidget] in the widget tree.
+mixin LoadingManager<T extends StatefulWidget> on State<T> {
+  String? _message;
+  bool _isLoading = false;
+  bool _isLoadingWithMessage = false;
 
-  Translator provideTranslate();
-  String? message;
-  bool isLoading = false;
-  bool isLoadingWithMessage = false;
-
-  void showLoading() async {
-    if (!isLoading) {
-      isLoading = true;
-      runChangeState();
-    }
+  void showLoading() {
+    if (!_isLoading) setState(() => _isLoading = true);
   }
 
-  void hideLoading() async {
-    if (isLoading) {
-      isLoading = false;
-      runChangeState();
-    }
+  void hideLoading() {
+    if (_isLoading) setState(() => _isLoading = false);
   }
 
-  void showMessageLoading({String? message}) async {
-    this.message = message ?? plzWaitMsg();
-    if (!isLoadingWithMessage) {
-      isLoadingWithMessage = true;
-      runChangeState();
-    }
+  void showMessageLoading({String? message}) {
+    setState(() {
+      _message = message ?? context.tr(LocalizationKeys.plzWait);
+      _isLoadingWithMessage = true;
+    });
   }
 
-  void hideMessageLoading() async {
-    if (isLoadingWithMessage) {
-      isLoadingWithMessage = false;
-      runChangeState();
-    }
+  void hideMessageLoading() {
+    if (_isLoadingWithMessage) setState(() => _isLoadingWithMessage = false);
   }
 
   void hideAnyLoading() {
@@ -47,28 +37,10 @@ mixin LoadingManager {
   }
 
   Widget loadingManagerWidget() {
-    if (isLoading) {
-      return customLoadingWidget();
-    } else if (isLoadingWithMessage) {
-      return customLoadingMessageWidget(message!);
-    } else {
-      return getEmptyWidget();
+    if (_isLoading) return FullScreenLoaderWidget.onlyAnimation();
+    if (_isLoadingWithMessage) {
+      return FullScreenLoaderWidget.message(_message!);
     }
+    return getEmptyWidget();
   }
-
-  /// use this method if you want to change the default loading widget
-  Widget customLoadingWidget() {
-    return FullScreenLoaderWidget.onlyAnimation();
-  }
-
-  /// use this method if you want to change the default loading widget with
-  /// it's message
-  /// [message] --> refer to the message that you want to display
-  /// that already submitted using [showMessageLoading]
-  Widget customLoadingMessageWidget(String message) {
-    return FullScreenLoaderWidget.message(message);
-  }
-
-  String plzWaitMsg() =>
-      provideTranslate().translate(LocalizationKeys.plzWait)!;
 }
