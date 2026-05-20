@@ -6,7 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_starter_kit/apis/_base/dio_api_manager.dart';
-import 'package:flutter_starter_kit/feature/home/screen/home_screen.dart';
+import 'package:flutter_starter_kit/feature/example_posts/presentation/screen/posts_screen.dart';
 import 'package:flutter_starter_kit/preferences/preferences_manager.dart';
 import 'package:flutter_starter_kit/res/app_colors.dart';
 import 'package:flutter_starter_kit/utils/locale/app_localization.dart';
@@ -80,7 +80,7 @@ class MyApp extends StatelessWidget {
                 locale: state,
 
                 routes: const {},
-                home: const HomeScreen(),
+                home: const PostsScreen(),
               ),
             ),
           );
