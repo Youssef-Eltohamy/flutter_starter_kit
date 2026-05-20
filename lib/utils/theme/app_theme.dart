@@ -22,7 +22,7 @@ class AppTheme {
   ThemeData get themeDataLight {
     return ThemeData(
       // useMaterial3: true,
-      colorScheme: ColorScheme(
+      colorScheme: const ColorScheme(
         brightness: Brightness.light,
 
         primary: AppColors.primary,

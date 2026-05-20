@@ -16,7 +16,7 @@ class FullScreenLoaderWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var theme = Theme.of(context);
+    final theme = Theme.of(context);
     return Container(
       color: theme.primaryColor.withValues(alpha: 0.86),
       child: Center(

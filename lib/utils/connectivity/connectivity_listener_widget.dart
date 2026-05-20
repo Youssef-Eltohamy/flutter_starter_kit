@@ -2,8 +2,6 @@ import 'dart:async';
 
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
-import 'package:get_it/get_it.dart';
-import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:flutter_starter_kit/core/translator.dart';
 import 'package:flutter_starter_kit/res/app_colors.dart';
 import 'package:flutter_starter_kit/res/app_icons.dart';
@@ -11,6 +9,8 @@ import 'package:flutter_starter_kit/utils/connectivity/connectivity_data.dart';
 import 'package:flutter_starter_kit/utils/connectivity/connectivity_type.dart';
 import 'package:flutter_starter_kit/utils/developer.dart';
 import 'package:flutter_starter_kit/utils/locale/app_localization_keys.dart';
+import 'package:get_it/get_it.dart';
+import 'package:internet_connection_checker/internet_connection_checker.dart';
 
 const double _connectivityWidgetHeight = 50;
 
@@ -122,26 +122,26 @@ class _ConnectivityListenerWidgetState extends State<ConnectivityListenerWidget>
   }
 
   void _startConnectivityListener() {
-    var connectivity = Connectivity();
+    final connectivity = Connectivity();
     _connectivityStream = connectivity.onConnectivityChanged.listen(
       (ConnectivityResult result) async {
         switch (result) {
           case ConnectivityResult.wifi:
-            Developer.developerLog("connected throw wifi");
+            Developer.developerLog('connected throw wifi');
             connectivityData.connectivityType =
                 ConnectivityType.connectedThrowWifi;
             break;
           case ConnectivityResult.mobile:
-            Developer.developerLog("connected throw mobile");
+            Developer.developerLog('connected throw mobile');
             connectivityData.connectivityType =
                 ConnectivityType.connectedThrowMobile;
             break;
           case ConnectivityResult.none:
-            Developer.developerLog("not connected");
+            Developer.developerLog('not connected');
             connectivityData.connectivityType = ConnectivityType.notConnected;
             break;
           default:
-            Developer.developerLog("not connected default case");
+            Developer.developerLog('not connected default case');
             connectivityData.connectivityType = ConnectivityType.notConnected;
             break;
         }
@@ -154,18 +154,18 @@ class _ConnectivityListenerWidgetState extends State<ConnectivityListenerWidget>
   }
 
   void _startInternetConnectionListener() {
-    var internetConnectivityChecker = InternetConnectionChecker.instance;
+    final internetConnectivityChecker = InternetConnectionChecker.instance;
     _internetConnectionStream =
         internetConnectivityChecker.onStatusChange.listen((event) {
       if (event == InternetConnectionStatus.connected) {
-        Developer.developerLog("connected to internet");
+        Developer.developerLog('connected to internet');
 
         _changeInternetConnectionState(true);
         if (widget.disConnectedCallBack != null) {
           widget.disConnectedCallBack!();
         }
       } else {
-        Developer.developerLog("not connected to internet");
+        Developer.developerLog('not connected to internet');
         _changeInternetConnectionState(false);
         if (widget.connectedBackCallBack != null) {
           widget.connectedBackCallBack!();

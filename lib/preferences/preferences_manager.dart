@@ -7,7 +7,7 @@ class PreferencesManager {
   }
 
   Future<bool> clearAllUserData() async {
-    String? locale = await getLocale();
+    final String? locale = await getLocale();
     await PreferencesUtils.clearData();
     if (locale != null) await setLocale(locale);
     return true;

@@ -35,7 +35,7 @@ class LocaleCubit extends Cubit<Locale> {
   }
 
   // String get defaultSystemLocale => Platform.localeName.substring(0, 2);
-  String get defaultSystemLocale => "en";
+  String get defaultSystemLocale => 'en';
 }
 
 enum LocaleApp {

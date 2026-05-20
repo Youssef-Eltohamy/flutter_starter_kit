@@ -6,7 +6,7 @@ mixin ScreenSizer {
   late Orientation orientation;
 
   void initScreenSizer(BuildContext context) {
-    var mediaQueryData = MediaQuery.of(context);
+    final mediaQueryData = MediaQuery.of(context);
     width = mediaQueryData.size.width;
     height = mediaQueryData.size.height;
     orientation = mediaQueryData.orientation;

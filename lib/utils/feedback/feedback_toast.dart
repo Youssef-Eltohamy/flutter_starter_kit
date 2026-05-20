@@ -1,5 +1,5 @@
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:flutter_starter_kit/res/app_colors.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 void showToast(String message) {
   /// reference

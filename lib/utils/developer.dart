@@ -4,7 +4,7 @@ import 'package:flutter_starter_kit/utils/feedback/feedback_toast.dart';
 
 class Developer {
   static const String sampleDeveloperError =
-      "Sample Developer Error to be guided with";
+      'Sample Developer Error to be guided with';
 
   static void developerError(String message) {
     developerShow(message);

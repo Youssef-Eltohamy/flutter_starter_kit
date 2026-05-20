@@ -25,13 +25,13 @@ class AppLocalizations {
 
   Future<bool> load() async {
     /// 1- Load the language JSON file from the "lang" folder
-    String jsonString = await rootBundle.loadString(
+    final String jsonString = await rootBundle.loadString(
       'locale/${locale.languageCode}.json',
     );
 
     /// 2- mapping the json string that we loaded from the file to json map
     /// with dynamic value.
-    Map<String, dynamic> jsonMap =
+    final Map<String, dynamic> jsonMap =
         json.decode(jsonString) as Map<String, dynamic>;
 
     /// 3- because we assure that every value in the map is String we will map
@@ -91,7 +91,7 @@ class _AppLocalizationsDelegate
   @override
   Future<AppLocalizations> load(Locale locale) async {
     /// AppLocalizations class is where the JSON loading actually runs
-    AppLocalizations localizations = AppLocalizations(locale);
+    final AppLocalizations localizations = AppLocalizations(locale);
     await localizations.load();
     return localizations;
   }
