@@ -6,6 +6,11 @@ import 'package:flutter_starter_kit/feature/example_posts/data/models/post.dart'
 /// Fetches example posts from a public API. Demonstrates the project's
 /// data-layer pattern: take a [Dio], return `Either<Failure, T>`, and map
 /// transport errors to typed [Failure]s.
+///
+/// For simplicity this example uses a standalone [Dio] against a public test
+/// API (jsonplaceholder). Real features that need auth headers, a configured
+/// base URL, or interceptors should use the project's `DioApiManager` instead
+/// — environment/base-URL wiring is covered in a later phase.
 class PostsRepository {
   const PostsRepository(this._dio);
 
