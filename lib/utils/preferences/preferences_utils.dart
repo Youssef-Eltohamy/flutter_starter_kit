@@ -30,7 +30,7 @@ class PreferencesUtils {
   }
 
   static Future<bool> getBool(String key) async {
-    var result = (await getSharePref()).getBool(key);
+    final result = (await getSharePref()).getBool(key);
     if (result != null) {
       return result;
     } else {

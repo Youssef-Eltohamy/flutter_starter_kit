@@ -11,7 +11,8 @@ void main() {
       expect(getInitialFormattedNumber('xx-xx', '1234'), '12-34');
     });
 
-    test('strips trailing placeholders when input is shorter than the mask', () {
+    test('strips trailing placeholders when input is shorter than the mask',
+        () {
       expect(getInitialFormattedNumber('xxx', '12'), '12');
     });
 

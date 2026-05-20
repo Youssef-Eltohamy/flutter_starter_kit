@@ -1,34 +1,34 @@
 extension ConcatenateAsterisk on String {
   String get concatenateAsterisk {
-    return "$this *";
+    return '$this *';
   }
 }
 
 extension ConcatenateColon on String {
   String get concatenateColon {
-    return "$this:";
+    return '$this:';
   }
 }
 
 extension ConcatenateSpace on String {
   String get concatenateSpace {
-    return "$this ";
+    return '$this ';
   }
 }
 
 extension ConcatenatePercent on String {
   String get concatenatePercent {
-    return "$this %";
+    return '$this %';
   }
 }
 
 extension EncryptText on String {
   String get encryptText {
-    String encryptedPhone = "";
-    String text = this;
+    String encryptedPhone = '';
+    final String text = this;
     for (int i = 0; i < text.length; i++) {
       if (i < text.length - 4) {
-        encryptedPhone += "*";
+        encryptedPhone += '*';
       } else {
         encryptedPhone += text[i];
       }
@@ -39,25 +39,25 @@ extension EncryptText on String {
 
 extension ConcatenateNewLine on String {
   String get concatenateNewline {
-    return "$this\n";
+    return '$this\n';
   }
 }
 
 extension ConcatenateBrackets on String {
   String get concatenateBrackets {
-    return "($this)";
+    return '($this)';
   }
 }
 
 extension ConcatenateQuestionMarkEnglish on String {
   String get concatenateQuestionMarkEnglish {
-    return "$this?";
+    return '$this?';
   }
 }
 
 extension ConcatenateQuestionMarkArabic on String {
   String get concatenateQuestionMarkArabic {
-    return "$this؟";
+    return '$this؟';
   }
 }
 
@@ -67,7 +67,7 @@ extension Validation on String? {
 
 extension ConcatenateDash on String {
   String get concatenateDash {
-    return "- $this";
+    return '- $this';
   }
 }
 
@@ -87,7 +87,7 @@ extension ArabicNumberConverter on String {
 
   String toArabicDigitsConverter() {
     final String number = toString();
-    StringBuffer sb = StringBuffer();
+    final StringBuffer sb = StringBuffer();
     for (int i = 0; i < number.length; i++) {
       sb.write(arabicDigits[number[i]] ?? number[i]);
     }
@@ -111,7 +111,7 @@ extension EnglishNumberConverter on String {
 
   String toEnglishDigitsConverter() {
     final String number = toString();
-    StringBuffer sb = StringBuffer();
+    final StringBuffer sb = StringBuffer();
     for (int i = 0; i < number.length; i++) {
       sb.write(englishDigits[number[i]] ?? number[i]);
     }

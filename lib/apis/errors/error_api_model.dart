@@ -36,7 +36,7 @@ class ErrorApiModel extends Failure {
 
         break;
       case DioExceptionType.unknown:
-        if (dioError.message?.contains("SocketException") ?? false) {
+        if (dioError.message?.contains('SocketException') ?? false) {
           codeError = 1012;
           break;
         }
@@ -62,7 +62,7 @@ class ErrorApiModel extends Failure {
     if (error is DioException) {
       errorApiModel = ErrorApiModel.fromDioError(error);
     } else if (error is TypeError) {
-      String? stackTrace = "";
+      String? stackTrace = '';
       stackTrace = error.stackTrace.toString();
       errorApiModel = ErrorApiModel(
         code: 1015,
@@ -80,11 +80,11 @@ class ErrorApiModel extends Failure {
   }
 
   factory ErrorApiModel.fromJson(DioException error) {
-    Map<String, dynamic> extractedData =
+    final Map<String, dynamic> extractedData =
         error.response?.data as Map<String, dynamic>;
     return ErrorApiModel(
       code: error.response?.statusCode ?? 1007,
-      message: extractedData["Message"],
+      message: extractedData['Message'],
       isMessageLocalizationKey: false,
     );
   }

@@ -5,7 +5,7 @@ class Validator {
     const String pattern =
         r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
 
-    var regExp = RegExp(pattern);
+    final regExp = RegExp(pattern);
 
     return regExp.hasMatch(email.trim());
   }
@@ -13,20 +13,20 @@ class Validator {
   static bool isNumber(String number) {
     const String pattern = r'^[0-9]+$';
 
-    var regExp = RegExp(pattern);
+    final regExp = RegExp(pattern);
 
     return regExp.hasMatch(number.trim());
   }
 
   static bool isName(String name) {
     const String pattern = r'^[a-zA-Z]+$';
-    var regExp = RegExp(pattern);
+    final regExp = RegExp(pattern);
     return regExp.hasMatch(name.trim());
   }
 
   static bool isPassportNumber(String name) {
     const String pattern = r'^(?!^0+$)[a-zA-Z0-9]{3,20}$';
-    var regExp = RegExp(pattern);
+    final regExp = RegExp(pattern);
     return regExp.hasMatch(name.trim());
   }
 
@@ -74,7 +74,7 @@ class Validator {
     if (number.isNullOrEmpty) {
       return ValidationState.empty;
     } else if (!isNumber(number!) ||
-        !number.startsWith("5") ||
+        !number.startsWith('5') ||
         number.length != 9) {
       return ValidationState.formatting;
     } else {

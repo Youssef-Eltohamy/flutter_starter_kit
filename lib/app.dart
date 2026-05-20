@@ -5,9 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get_it/get_it.dart';
-
-import 'package:keyboard_dismisser/keyboard_dismisser.dart';
 import 'package:flutter_starter_kit/apis/_base/dio_api_manager.dart';
 import 'package:flutter_starter_kit/feature/home/screen/home_screen.dart';
 import 'package:flutter_starter_kit/preferences/preferences_manager.dart';
@@ -16,9 +13,10 @@ import 'package:flutter_starter_kit/utils/locale/app_localization.dart';
 import 'package:flutter_starter_kit/utils/locale/app_localization_keys.dart';
 import 'package:flutter_starter_kit/utils/locale/locale_cubit.dart';
 import 'package:flutter_starter_kit/utils/locale/locale_repository.dart';
-
 import 'package:flutter_starter_kit/utils/status_bar/statusbar_controller.dart';
 import 'package:flutter_starter_kit/utils/theme/app_theme.dart';
+import 'package:get_it/get_it.dart';
+import 'package:keyboard_dismisser/keyboard_dismisser.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -26,7 +24,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     _changeStatusBarColor();
-    DioApiManager dioApiManager = GetIt.I<DioApiManager>();
+    final DioApiManager dioApiManager = GetIt.I<DioApiManager>();
 
     return MultiBlocProvider(
       providers: [
@@ -50,7 +48,7 @@ class MyApp extends StatelessWidget {
                     AppLocalizations.of(
                       context,
                     )?.translate(LocalizationKeys.appName) ??
-                    "Flutter Starter Kit",
+                    'Flutter Starter Kit',
                 debugShowCheckedModeBanner: false,
                 theme: AppTheme(state).themeDataLight,
                 darkTheme: AppTheme(state).themeDataDark,

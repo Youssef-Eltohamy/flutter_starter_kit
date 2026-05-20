@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:developer';
 import 'dart:io';
 
@@ -8,7 +9,7 @@ import 'package:flutter_starter_kit/utils/build_type/build_type.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 
 class DioApiManager {
-  final String defaultLanguage = "en";
+  final String defaultLanguage = 'en';
   final PreferencesManager preferenceManager;
 
   //  dio instance to request token
@@ -52,20 +53,20 @@ class DioApiManager {
         // Assume 401 stands for token expired
         if (error.response?.statusCode == 401 ||
             error.response?.statusCode == 403) {
-          logOutNow();
+          unawaited(logOutNow());
           return;
         }
 
         return handler.next(error);
       },
       onRequest: (request, handler) async {
-        String language =
+        final String language =
             await preferenceManager.getLocale() ?? defaultLanguage;
         if (request.headers[ApiKeys.locale] != language) {
           request.headers[ApiKeys.locale] = language;
         }
-        String? token = await preferenceManager.getAccessToken();
-        if (token != null && token != "") {
+        final String? token = await preferenceManager.getAccessToken();
+        if (token != null && token != '') {
           if (request.headers[ApiKeys.authorization] == null) {
             request.headers[ApiKeys.authorization] =
                 '${ApiKeys.keyBearer} $token';
@@ -73,17 +74,17 @@ class DioApiManager {
             request.headers.remove(ApiKeys.authorization);
           }
         }
-        int? mode = await preferenceManager.getMode();
+        final int? mode = await preferenceManager.getMode();
         if (request.headers[ApiKeys.mode] != mode) {
           request.headers[ApiKeys.mode] = mode ?? ApiKeys.clientMode;
         }
-        PackageInfo packageInfo = await PackageInfo.fromPlatform();
-        String appVersion = packageInfo.version;
+        final PackageInfo packageInfo = await PackageInfo.fromPlatform();
+        final String appVersion = packageInfo.version;
         if (request.headers[ApiKeys.appVersion] != appVersion) {
           request.headers[ApiKeys.appVersion] = appVersion;
         }
-        String? lat = await preferenceManager.getAddressLat();
-        String? lng = await preferenceManager.getAddressLng();
+        final String? lat = await preferenceManager.getAddressLat();
+        final String? lng = await preferenceManager.getAddressLng();
         if (lat != null && lng != null) {
           if (request.headers[ApiKeys.lat] != lat &&
               request.headers[ApiKeys.lng] != lng) {
@@ -99,12 +100,12 @@ class DioApiManager {
   QueuedInterceptorsWrapper get _queuedInterceptorsWrapperUnauthorized {
     return QueuedInterceptorsWrapper(
       onRequest: (request, handler) async {
-        String? language = await preferenceManager.getLocale();
+        final String? language = await preferenceManager.getLocale();
         if (request.headers[ApiKeys.locale] != language) {
           request.headers[ApiKeys.locale] = language ?? defaultLanguage;
         }
-        PackageInfo packageInfo = await PackageInfo.fromPlatform();
-        String appVersion = packageInfo.version;
+        final PackageInfo packageInfo = await PackageInfo.fromPlatform();
+        final String appVersion = packageInfo.version;
         if (request.headers[ApiKeys.appVersion] != appVersion) {
           request.headers[ApiKeys.appVersion] = appVersion;
         }
@@ -126,7 +127,7 @@ class DioApiManager {
 class DioOptions extends BaseOptions {
   @override
   Map<String, dynamic> get headers {
-    Map<String, dynamic> header = {};
+    final Map<String, dynamic> header = {};
 
     header.putIfAbsent(ApiKeys.accept, () => ApiKeys.applicationJson);
     header.putIfAbsent(

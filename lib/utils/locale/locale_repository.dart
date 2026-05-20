@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter_starter_kit/apis/_base/dio_api_manager.dart';
 import 'package:flutter_starter_kit/apis/api_keys.dart';
 import 'package:flutter_starter_kit/preferences/preferences_manager.dart';
@@ -26,7 +28,7 @@ class LocaleRepository {
   Future<void> updateLanguageInfo(LocaleApp localeApp) async {
     await changeLanguageLocal(localeApp);
     if (await preferenceManager.isLoggedIn()) {
-      changeLanguageApi(localeApp);
+      unawaited(changeLanguageApi(localeApp));
     }
   }
 }

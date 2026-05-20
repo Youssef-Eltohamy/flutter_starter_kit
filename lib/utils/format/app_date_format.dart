@@ -13,7 +13,7 @@ class AppDateFormat {
     try {
       return appDateFormat(local).format(date!);
     } catch (e) {
-      return "";
+      return '';
     }
   }
 

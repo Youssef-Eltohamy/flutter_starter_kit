@@ -51,7 +51,7 @@ class HomeScreen extends StatelessWidget {
                     ),
                     const SizedBox(height: 24),
                     // Call us and Email us cards
-                    Row(
+                    const Row(
                       children: [
                         Expanded(
                           child: _ContactCard(
@@ -61,7 +61,7 @@ class HomeScreen extends StatelessWidget {
                             time: 'Mon-Fri  •  9-17',
                           ),
                         ),
-                        const SizedBox(width: 17),
+                        SizedBox(width: 17),
                         Expanded(
                           child: _ContactCard(
                             icon: Icons.mail,

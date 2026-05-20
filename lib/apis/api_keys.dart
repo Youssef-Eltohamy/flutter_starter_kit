@@ -1,39 +1,39 @@
 class ApiKeys {
   /// KEYs
 
-  static const authorization = "Authorization";
-  static const accept = "Accept";
-  static const platform = "Platform";
-  static const mode = "Buyer-App-Mode";
-  static const platformAndroid = "android";
-  static const platformIos = "ios";
-  static const appVersion = "App-Version";
-  static const applicationJson = "application/json";
-  static const locale = "Accept-Language";
-  static const contentType = "Content-Type";
-  static const keyBearer = "Bearer";
-  static const lat = "Current-Selected-Latitude";
-  static const lng = "Current-Selected-Longitude";
-  static const pageNumber = "PageNumber";
-  static const pageSize = "PageSize";
-  static const categoryId = "CategoryId";
-  static const notValid = "NotValid";
+  static const authorization = 'Authorization';
+  static const accept = 'Accept';
+  static const platform = 'Platform';
+  static const mode = 'Buyer-App-Mode';
+  static const platformAndroid = 'android';
+  static const platformIos = 'ios';
+  static const appVersion = 'App-Version';
+  static const applicationJson = 'application/json';
+  static const locale = 'Accept-Language';
+  static const contentType = 'Content-Type';
+  static const keyBearer = 'Bearer';
+  static const lat = 'Current-Selected-Latitude';
+  static const lng = 'Current-Selected-Longitude';
+  static const pageNumber = 'PageNumber';
+  static const pageSize = 'PageSize';
+  static const categoryId = 'CategoryId';
+  static const notValid = 'NotValid';
 
   static const clientMode = 1;
   static const businessMode = 2;
 
   /// map kay
-  static const googleMapsApiKey = "AIzaSyC9KEnXSaS08f3r0pT1qVuEMhoKzLHi5_o";
+  static const googleMapsApiKey = 'AIzaSyC9KEnXSaS08f3r0pT1qVuEMhoKzLHi5_o';
 
   /// URLs
   static const baseUrlProduction =
-      "https://oyn-gateway-c3wcsxgmhq-ew.a.run.app/";
+      'https://oyn-gateway-c3wcsxgmhq-ew.a.run.app/';
   static const baseUrlQc =
-      "https://oyn-gateway-qc.salmonsky-1edff179.westeurope.azurecontainerapps.io/";
+      'https://oyn-gateway-qc.salmonsky-1edff179.westeurope.azurecontainerapps.io/';
   static const baseUrlDev =
-      "https://oyn-gateway-dev.nicewater-75de7f47.westeurope.azurecontainerapps.io/";
+      'https://oyn-gateway-dev.nicewater-75de7f47.westeurope.azurecontainerapps.io/';
 
-  static const apiKeyUrl = "api";
+  static const apiKeyUrl = 'api';
   static const baseApiUrl = '/$apiKeyUrl';
 
   static const sentOtpUrl = '/Identity/api/Account/CheckLogin';
@@ -107,12 +107,12 @@ class ApiKeys {
   static String similarProductListById(int productId, {int count = 4}) =>
       '$similarProductListUrl/$productId/$count';
 
-  static const uploadFileUrl = "/FileService/api/Attachment/Upload";
+  static const uploadFileUrl = '/FileService/api/Attachment/Upload';
   static const completeInfo =
-      "/UserManagement/api/BusinessAccount/CompleteInfo";
+      '/UserManagement/api/BusinessAccount/CompleteInfo';
 
-  static const getAvailableDaysUrl = "/Ecommerce/api/Order/GetAvailableDays";
-  static const getAvailableSlotsUrl = "/Ecommerce/api/Order/GetAvailableSlots";
+  static const getAvailableDaysUrl = '/Ecommerce/api/Order/GetAvailableDays';
+  static const getAvailableSlotsUrl = '/Ecommerce/api/Order/GetAvailableSlots';
   static const getOrderUrl = '/Ecommerce/api/Order/Get';
   static const placeOrderUrl = '/Ecommerce/api/Order/Place';
   static const cancelOrderUrl = '/Ecommerce/api/Order/Cancel';
@@ -122,6 +122,6 @@ class ApiKeys {
   static const getFaqUrl = '/Utilities/api/FAQQuestion/GetAll';
 
   static const registerGuestTokenUrl =
-      "/Notification/api/DevicePushToken/RegisterGuest";
-  static const registerTokenUrl = "/Notification/api/DevicePushToken/Register";
+      '/Notification/api/DevicePushToken/RegisterGuest';
+  static const registerTokenUrl = '/Notification/api/DevicePushToken/Register';
 }

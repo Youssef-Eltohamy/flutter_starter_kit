@@ -1,9 +1,9 @@
 import 'dart:developer';
 
 import 'package:dio/dio.dart';
-import 'package:get_it/get_it.dart';
 import 'package:flutter_starter_kit/apis/api_keys.dart';
 import 'package:flutter_starter_kit/preferences/preferences_manager.dart';
+import 'package:get_it/get_it.dart';
 
 class AppInterceptor extends InterceptorsWrapper {
   var preferencesManager = GetIt.I<PreferencesManager>();
@@ -13,27 +13,27 @@ class AppInterceptor extends InterceptorsWrapper {
     RequestOptions options,
     RequestInterceptorHandler handler,
   ) async {
-    String? token = await preferencesManager.getAccessToken();
-    String? locale = await preferencesManager.getLocale();
+    final String? token = await preferencesManager.getAccessToken();
+    final String? locale = await preferencesManager.getLocale();
     options.headers[ApiKeys.accept] = ApiKeys.applicationJson;
     options.headers[ApiKeys.locale] = locale;
     options.headers[ApiKeys.contentType] = ApiKeys.applicationJson;
     if (token != null) {
-      options.headers[ApiKeys.authorization] = "${ApiKeys.keyBearer} $token";
+      options.headers[ApiKeys.authorization] = '${ApiKeys.keyBearer} $token';
     }
-    log("Request Path :: ${options.path}  -- Data :: ${options.data}");
+    log('Request Path :: ${options.path}  -- Data :: ${options.data}');
     return super.onRequest(options, handler);
   }
 
   @override
   void onResponse(Response response, ResponseInterceptorHandler handler) {
-    log("Response :: ${response.data}");
+    log('Response :: ${response.data}');
     super.onResponse(response, handler);
   }
 
   @override
   void onError(DioException err, ErrorInterceptorHandler handler) {
-    log("error : ${err.error.toString()}");
+    log('error : ${err.error.toString()}');
     handler.resolve(err.response!);
   }
 }
