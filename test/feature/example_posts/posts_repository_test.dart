@@ -18,10 +18,10 @@ void main() {
   });
 
   Response<dynamic> response(dynamic data, {int status = 200}) => Response(
-    data: data,
-    statusCode: status,
-    requestOptions: RequestOptions(path: ''),
-  );
+        data: data,
+        statusCode: status,
+        requestOptions: RequestOptions(path: ''),
+      );
 
   test('returns a list of posts on success', () async {
     when(() => dio.get<dynamic>(any())).thenAnswer(
