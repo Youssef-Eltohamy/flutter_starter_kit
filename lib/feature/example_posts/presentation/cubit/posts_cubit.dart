@@ -19,7 +19,8 @@ class PostsCubit extends Cubit<PostsState> {
           errorMessage: failure.message,
         ),
       ),
-      (posts) => emit(state.copyWith(status: PostsStatus.success, posts: posts)),
+      (posts) =>
+          emit(state.copyWith(status: PostsStatus.success, posts: posts)),
     );
   }
 }
