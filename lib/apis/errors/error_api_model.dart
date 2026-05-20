@@ -5,13 +5,13 @@ import 'package:flutter_starter_kit/core/failures.dart';
 
 class ErrorApiModel extends Failure {
   final bool isMessageLocalizationKey;
-  final String message;
   final int code;
-  ErrorApiModel({
+
+  const ErrorApiModel({
     required this.isMessageLocalizationKey,
-    required this.message,
+    required String message,
     required this.code,
-  });
+  }) : super(message);
 
   factory ErrorApiModel.fromDioError(DioException dioError) {
     late int codeError;
