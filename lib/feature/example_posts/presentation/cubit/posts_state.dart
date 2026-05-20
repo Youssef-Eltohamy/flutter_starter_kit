@@ -16,6 +16,9 @@ class PostsState extends Equatable {
   final List<Post> posts;
   final String? errorMessage;
 
+  /// Note: [errorMessage] is intentionally NOT preserved when omitted — moving
+  /// to [PostsStatus.loading] or [PostsStatus.success] clears any stale error.
+  /// Pass it explicitly only when entering [PostsStatus.failure].
   PostsState copyWith({
     PostsStatus? status,
     List<Post>? posts,
