@@ -18,9 +18,8 @@ class PostsRepository {
     try {
       final response = await _dio.get<dynamic>(_endpoint);
       final data = (response.data as List<dynamic>?) ?? <dynamic>[];
-      final posts = data
-          .map((e) => Post.fromJson(e as Map<String, dynamic>))
-          .toList();
+      final posts =
+          data.map((e) => Post.fromJson(e as Map<String, dynamic>)).toList();
       return Right(posts);
     } on DioException catch (e) {
       if (e.type == DioExceptionType.connectionError) {
