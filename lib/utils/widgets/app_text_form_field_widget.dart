@@ -3,7 +3,6 @@ import 'package:flutter/services.dart';
 import 'package:flutter_starter_kit/core/extensions/context_extensions.dart';
 import 'package:flutter_starter_kit/res/app_colors.dart';
 
-// ignore: must_be_immutable
 class AppTextFormField extends StatefulWidget {
   final String? hintText;
   final String? helperText;
@@ -22,13 +21,13 @@ class AppTextFormField extends StatefulWidget {
   final String? customCounterText;
   final Widget? prefixIcon;
   final String? prefixText;
-  Color? enableBorderColor;
-  FocusNode? focusNode;
-  Iterable<String>? autofillHints;
+  final Color? enableBorderColor;
+  final FocusNode? focusNode;
+  final Iterable<String>? autofillHints;
 
   final List<TextInputFormatter>? inputFormatters;
 
-  AppTextFormField({
+  const AppTextFormField({
     super.key,
     required this.hintText,
     required this.onSaved,

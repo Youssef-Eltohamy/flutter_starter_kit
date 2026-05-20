@@ -152,14 +152,14 @@ class _ConnectivityListenerWidgetState extends State<ConnectivityListenerWidget>
         Developer.developerLog('connected to internet');
 
         _changeInternetConnectionState(true);
-        if (widget.disConnectedCallBack != null) {
-          widget.disConnectedCallBack!();
+        if (widget.connectedBackCallBack != null) {
+          widget.connectedBackCallBack!();
         }
       } else {
         Developer.developerLog('not connected to internet');
         _changeInternetConnectionState(false);
-        if (widget.connectedBackCallBack != null) {
-          widget.connectedBackCallBack!();
+        if (widget.disConnectedCallBack != null) {
+          widget.disConnectedCallBack!();
         }
       }
     });
