@@ -48,3 +48,23 @@ with unit tests in `test/feature/example_posts/`.
 3. Register the repository in `lib/injection.dart`.
 4. Add tests under `test/feature/<name>/`.
 5. Run `flutter analyze` and `flutter test`.
+
+## Navigation
+
+Routing uses a single `GoRouter` in `lib/core/router/app_router.dart`. Route
+paths/names live in `lib/core/router/app_routes.dart` — reference those, never
+string literals. Navigate with `context.push(AppRoutes.postDetailsPath(id),
+extra: post)` and read arguments via `state.extra`. `lib/app.dart` wires it with
+`MaterialApp.router(routerConfig: appRouter)`.
+
+## UI conventions
+
+- Access sizing/theme/localization through `BuildContext` extensions
+  (`context.screenWidth`, `context.theme`, `context.tr('key')`) — see
+  `lib/core/extensions/context_extensions.dart`. Widgets stay stateless; no
+  layout/theme state is cached on a widget.
+- Platform checks use `AppPlatform` (`lib/core/app_platform.dart`).
+- Full screens that need a loading overlay and an offline banner extend
+  `BaseStatefulScreenWidget` and implement `baseScreenBuild` (call
+  `showLoading()` / `hideLoading()` as needed). `PostDetailsScreen` is the
+  reference example. Simple screens can be plain `StatelessWidget`s.
