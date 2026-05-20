@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_starter_kit/core/router/app_routes.dart';
 import 'package:flutter_starter_kit/feature/example_posts/data/posts_repository.dart';
 import 'package:flutter_starter_kit/feature/example_posts/presentation/cubit/posts_cubit.dart';
 import 'package:flutter_starter_kit/feature/example_posts/presentation/cubit/posts_state.dart';
 import 'package:flutter_starter_kit/injection.dart';
+import 'package:go_router/go_router.dart';
 
 /// Reference example screen. Shows the recommended wiring:
 /// BlocProvider creates the Cubit from a get_it dependency, and BlocBuilder
@@ -38,6 +40,10 @@ class PostsScreen extends StatelessWidget {
                     return ListTile(
                       title: Text(post.title),
                       subtitle: Text(post.body),
+                      onTap: () => context.push(
+                        AppRoutes.postDetailsPath(post.id),
+                        extra: post,
+                      ),
                     );
                   },
                 );

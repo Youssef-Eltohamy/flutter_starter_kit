@@ -1,12 +1,11 @@
-import 'dart:io';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_starter_kit/apis/_base/dio_api_manager.dart';
-import 'package:flutter_starter_kit/feature/example_posts/presentation/screen/posts_screen.dart';
+import 'package:flutter_starter_kit/core/app_platform.dart';
+import 'package:flutter_starter_kit/core/router/app_router.dart';
 import 'package:flutter_starter_kit/preferences/preferences_manager.dart';
 import 'package:flutter_starter_kit/res/app_colors.dart';
 import 'package:flutter_starter_kit/utils/locale/app_localization.dart';
@@ -40,10 +39,10 @@ class MyApp extends StatelessWidget {
       child: BlocBuilder<LocaleCubit, Locale>(
         builder: (context, state) {
           return KeyboardDismisser(
-            gestures: Platform.isAndroid ? [] : [GestureType.onTap],
+            gestures: AppPlatform.isAndroid ? [] : [GestureType.onTap],
             child: ScreenUtilInit(
               designSize: const Size(390, 844),
-              builder: (context, child) => MaterialApp(
+              builder: (context, child) => MaterialApp.router(
                 onGenerateTitle: (BuildContext context) =>
                     AppLocalizations.of(
                       context,
@@ -79,8 +78,7 @@ class MyApp extends StatelessWidget {
                 ],
                 locale: state,
 
-                routes: const {},
-                home: const PostsScreen(),
+                routerConfig: appRouter,
               ),
             ),
           );
