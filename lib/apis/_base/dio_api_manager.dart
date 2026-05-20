@@ -2,9 +2,9 @@ import 'dart:developer';
 import 'dart:io';
 
 import 'package:dio/dio.dart';
-import 'package:nemo/apis/api_keys.dart';
-import 'package:nemo/preferences/preferences_manager.dart';
-import 'package:nemo/utils/build_type/build_type.dart';
+import 'package:flutter_starter_kit/apis/api_keys.dart';
+import 'package:flutter_starter_kit/preferences/preferences_manager.dart';
+import 'package:flutter_starter_kit/utils/build_type/build_type.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 
 class DioApiManager {

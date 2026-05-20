@@ -5,6 +5,11 @@ import 'package:flutter/material.dart';
 /// there is a stand alone variable for any widget, text, image or icon
 ///
 /// All name colors according to https://chir.ag/projects/name-that-color
+///
+/// The private `_*` fields below form a complete design palette (primary,
+/// secondary, base greys and accent shades). Some shades are reserved for
+/// future semantic mappings and may be unused for now — this is intentional.
+// ignore_for_file: unused_field
 class AppColors {
   static const _black = Color(0xff222222);
   static const _white = Colors.white;
@@ -30,29 +35,6 @@ class AppColors {
   static const _goblink = Color(0xff378A3A);
   static const _madang = Color(0xffC0F1C2);
   static const _apple = Color(0xff54B435);
-
-  // app main theme ...
-
-  // static const colorSchemeSeed = Color(0xFF27AE60);
-
-  // static const focus = Color(0xFF27AE60);
-  // static const primaryColor = Color(0xFF27AE60);
-  // static const primaryColor60 = Color(0xFF70C58D);
-  // static const primaryColor20 = Color(0xFFC3E5CE);//for buttons
-  // static const secondaryColor = Color(0xFFFF8900);
-  // static const secondaryColor80 = Color(0xFFFD9821);
-  // static const secondaryColor40 = Color(0xFFFDC079);
-  // static const baseColorwhite = Colors.white;
-  // static const baseColorwhite20 = Color(0xffE9E9E9);
-  // static const baseColorBlack = Color(0xff222222);
-  // static const baseColorBlack60 = Color(0xffA9A9A9);//for some buttons
-  // static const headLineText = Colors.black;
-  // static const bodyLineText = Color(0xff626262);
-  // static const errorRedColor = Color(0xffD10101);//for asstrisk and err
-  // // static const inputFieldColor = Color(0xffE9E9E9);
-  // static const infoBlueColor = Color(0xff0047AB);
-  // static const percentageColor = Color(0xff2DEE74);
-  // static const todoColor = Color(0xff7812B7);
 
   // PRIMARY COLORS
   static const Color _primary100 = Color(0xFF27AE60);
@@ -140,7 +122,7 @@ class AppColors {
 
   /// app form field
 
-  static final appFormFieldFill = _white.withOpacity(.1);
+  static final appFormFieldFill = _white.withValues(alpha: .1);
   static const enabledAppFormFieldBorder = _white;
   static const appFormFieldText = _white;
   static const appFormFieldSuffixIcon = _white;

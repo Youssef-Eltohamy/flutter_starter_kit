@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:nemo/utils/locale/app_localization.dart';
-import 'package:nemo/utils/locale/locale_repository.dart';
+import 'package:flutter_starter_kit/utils/locale/app_localization.dart';
+import 'package:flutter_starter_kit/utils/locale/locale_repository.dart';
 
 class LocaleCubit extends Cubit<Locale> {
   final LocaleRepository localeRepository;

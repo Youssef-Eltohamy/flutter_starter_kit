@@ -1,4 +1,4 @@
-import 'package:nemo/utils/locale/app_localization_keys.dart';
+import 'package:flutter_starter_kit/utils/locale/app_localization_keys.dart';
 
 class LocaleDioExceptions {
   static String getLocaleMessage(int code) {

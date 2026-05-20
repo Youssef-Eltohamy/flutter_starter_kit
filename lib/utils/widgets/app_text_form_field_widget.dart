@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:nemo/core/themer.dart';
-import 'package:nemo/res/app_colors.dart';
+import 'package:flutter_starter_kit/core/themer.dart';
+import 'package:flutter_starter_kit/res/app_colors.dart';
 
 // ignore: must_be_immutable
 class AppTextFormField extends StatefulWidget {
@@ -29,7 +29,7 @@ class AppTextFormField extends StatefulWidget {
   final List<TextInputFormatter>? inputFormatters;
 
   AppTextFormField({
-    Key? key,
+    super.key,
     required this.hintText,
     required this.onSaved,
     this.helperText,
@@ -51,8 +51,7 @@ class AppTextFormField extends StatefulWidget {
     this.autofillHints,
     this.prefixText,
     this.prefixIcon,
-  }) : assert(initialValue == null || controller == null),
-       super(key: key);
+  }) : assert(initialValue == null || controller == null);
 
   @override
   State<AppTextFormField> createState() => _AppTextFormFieldState();
@@ -98,21 +97,20 @@ class _AppTextFormFieldState extends State<AppTextFormField> with Themer {
           ),
         ),
         border: const OutlineInputBorder(),
-        suffixIcon:
-            widget.obscure
-                ? IconButton(
-                  icon: Icon(
-                    // Based on passwordVisible state choose the icon
-                    obscure ? Icons.visibility : Icons.visibility_off,
-                    color: Theme.of(context).primaryColor,
-                  ),
-                  onPressed: () {
-                    setState(() {
-                      obscure = !obscure;
-                    });
-                  },
-                )
-                : null,
+        suffixIcon: widget.obscure
+            ? IconButton(
+                icon: Icon(
+                  // Based on passwordVisible state choose the icon
+                  obscure ? Icons.visibility : Icons.visibility_off,
+                  color: Theme.of(context).primaryColor,
+                ),
+                onPressed: () {
+                  setState(() {
+                    obscure = !obscure;
+                  });
+                },
+              )
+            : null,
       ),
       onChanged: widget.onChanged,
       onFieldSubmitted: widget.onFieldSubmitted,

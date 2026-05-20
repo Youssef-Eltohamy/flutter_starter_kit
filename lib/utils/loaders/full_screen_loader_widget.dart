@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:nemo/utils/loaders/square_circle_loading_widget.dart';
+import 'package:flutter_starter_kit/utils/loaders/square_circle_loading_widget.dart';
 
 class FullScreenLoaderWidget extends StatelessWidget {
   final String? message;
 
-  const FullScreenLoaderWidget({Key? key, this.message}) : super(key: key);
+  const FullScreenLoaderWidget({super.key, this.message});
 
   factory FullScreenLoaderWidget.onlyAnimation() {
     return const FullScreenLoaderWidget();
@@ -18,12 +18,11 @@ class FullScreenLoaderWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     var theme = Theme.of(context);
     return Container(
-      color: theme.primaryColor.withOpacity(0.86),
+      color: theme.primaryColor.withValues(alpha: 0.86),
       child: Center(
-        child:
-            message != null
-                ? txtWithLoading(theme.cardColor)
-                : flashLoading(theme.cardColor),
+        child: message != null
+            ? txtWithLoading(theme.cardColor)
+            : flashLoading(theme.cardColor),
       ),
     );
   }

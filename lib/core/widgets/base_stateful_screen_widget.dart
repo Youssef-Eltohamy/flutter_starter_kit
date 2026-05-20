@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:nemo/core/loading_manager.dart';
-import 'package:nemo/core/widgets/base_stateful_widget.dart';
-import 'package:nemo/utils/connectivity/connectivity_listener_widget.dart';
+import 'package:flutter_starter_kit/core/loading_manager.dart';
+import 'package:flutter_starter_kit/core/widgets/base_stateful_widget.dart';
+import 'package:flutter_starter_kit/utils/connectivity/connectivity_listener_widget.dart';
 
 abstract class BaseStatefulScreenWidget extends BaseStatefulWidget {
-  const BaseStatefulScreenWidget({Key? key}) : super(key: key);
+  const BaseStatefulScreenWidget({super.key});
 
   @override
   BaseScreenState baseCreateState() => baseScreenCreateState();
@@ -14,8 +14,7 @@ abstract class BaseStatefulScreenWidget extends BaseStatefulWidget {
 }
 
 abstract class BaseScreenState<W extends BaseStatefulScreenWidget>
-    extends BaseState<W>
-    with LoadingManager {
+    extends BaseState<W> with LoadingManager {
   @override
   Widget baseBuild(BuildContext context) {
     return Material(

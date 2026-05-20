@@ -9,12 +9,12 @@ class SquareCircleLoadingWidget extends StatefulWidget {
   final AnimationController? controller;
 
   const SquareCircleLoadingWidget({
-    Key? key,
+    super.key,
     required this.color,
     this.size = 50.0,
     this.duration = const Duration(milliseconds: 500),
     this.controller,
-  }) : super(key: key);
+  });
 
   @override
   // ignore: library_private_types_in_public_api

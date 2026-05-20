@@ -2,8 +2,8 @@ import 'dart:developer';
 
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
-import 'package:nemo/apis/api_keys.dart';
-import 'package:nemo/preferences/preferences_manager.dart';
+import 'package:flutter_starter_kit/apis/api_keys.dart';
+import 'package:flutter_starter_kit/preferences/preferences_manager.dart';
 
 class AppInterceptor extends InterceptorsWrapper {
   var preferencesManager = GetIt.I<PreferencesManager>();

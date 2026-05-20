@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:nemo/core/platform_manager.dart';
-import 'package:nemo/core/screen_sizer.dart';
-import 'package:nemo/core/themer.dart';
-import 'package:nemo/core/translator.dart';
+import 'package:flutter_starter_kit/core/platform_manager.dart';
+import 'package:flutter_starter_kit/core/screen_sizer.dart';
+import 'package:flutter_starter_kit/core/themer.dart';
+import 'package:flutter_starter_kit/core/translator.dart';
 
 abstract class BaseStatefulWidget extends StatefulWidget {
-  const BaseStatefulWidget({Key? key}) : super(key: key);
+  const BaseStatefulWidget({super.key});
 
   @override
   // ignore: no_logic_in_create_state

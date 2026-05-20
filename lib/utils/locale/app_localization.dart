@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:nemo/utils/build_type/build_type.dart';
+import 'package:flutter_starter_kit/utils/build_type/build_type.dart';
 
 const codeEn = 'en';
 const codeAr = 'ar';

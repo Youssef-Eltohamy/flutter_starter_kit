@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:nemo/core/translator.dart';
-import 'package:nemo/utils/loaders/full_screen_loader_widget.dart';
-import 'package:nemo/utils/locale/app_localization_keys.dart';
-import 'package:nemo/utils/widgets/empty_widgets.dart';
+import 'package:flutter_starter_kit/core/translator.dart';
+import 'package:flutter_starter_kit/utils/loaders/full_screen_loader_widget.dart';
+import 'package:flutter_starter_kit/utils/locale/app_localization_keys.dart';
+import 'package:flutter_starter_kit/utils/widgets/empty_widgets.dart';
 
 mixin LoadingManager {
   void runChangeState();

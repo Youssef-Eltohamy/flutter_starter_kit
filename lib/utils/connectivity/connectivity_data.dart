@@ -1,4 +1,4 @@
-import 'package:nemo/utils/connectivity/connectivity_type.dart';
+import 'package:flutter_starter_kit/utils/connectivity/connectivity_type.dart';
 
 class ConnectivityData {
   bool isConnectedToInternet = false;

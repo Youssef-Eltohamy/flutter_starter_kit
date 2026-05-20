@@ -1,4 +1,4 @@
-import 'package:nemo/utils/extensions/extension_string.dart';
+import 'package:flutter_starter_kit/utils/extensions/extension_string.dart';
 
 class Validator {
   static bool isEmail(String email) {
