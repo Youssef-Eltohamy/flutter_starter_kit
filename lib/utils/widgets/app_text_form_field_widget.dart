@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_starter_kit/core/themer.dart';
+import 'package:flutter_starter_kit/core/extensions/context_extensions.dart';
 import 'package:flutter_starter_kit/res/app_colors.dart';
 
 // ignore: must_be_immutable
@@ -57,13 +57,12 @@ class AppTextFormField extends StatefulWidget {
   State<AppTextFormField> createState() => _AppTextFormFieldState();
 }
 
-class _AppTextFormFieldState extends State<AppTextFormField> with Themer {
+class _AppTextFormFieldState extends State<AppTextFormField> {
   bool obscure = true;
   bool setObscure = false;
 
   @override
   Widget build(BuildContext context) {
-    initThemer(context);
     if (!setObscure) {
       obscure = widget.obscure;
       setObscure = true;
@@ -72,7 +71,7 @@ class _AppTextFormFieldState extends State<AppTextFormField> with Themer {
       enabled: widget.enable,
       initialValue: widget.initialValue,
       obscureText: obscure,
-      style: textTheme.bodyMedium,
+      style: context.textTheme.bodyMedium,
       controller: widget.controller,
       autofillHints: widget.autofillHints,
       inputFormatters: widget.inputFormatters,
@@ -80,7 +79,7 @@ class _AppTextFormFieldState extends State<AppTextFormField> with Themer {
       decoration: InputDecoration(
         prefixText: widget.prefixText,
         prefixIcon: widget.prefixIcon,
-        prefixStyle: textTheme.bodyMedium,
+        prefixStyle: context.textTheme.bodyMedium,
         prefixIconConstraints: const BoxConstraints(maxWidth: 80, minWidth: 35),
         helperText: widget.helperText,
         isDense: true,
@@ -88,7 +87,7 @@ class _AppTextFormFieldState extends State<AppTextFormField> with Themer {
         hintText: widget.hintText,
         fillColor: AppColors.appFormFieldFill,
         filled: true,
-        hintStyle: textTheme.labelMedium,
+        hintStyle: context.textTheme.labelMedium,
         enabledBorder: OutlineInputBorder(
           borderSide: BorderSide(
             color:
