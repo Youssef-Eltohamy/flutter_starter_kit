@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_starter_kit/core/translator.dart';
+import 'package:flutter_starter_kit/core/extensions/context_extensions.dart';
 import 'package:flutter_starter_kit/res/app_colors.dart';
 import 'package:flutter_starter_kit/res/app_icons.dart';
 import 'package:flutter_starter_kit/utils/connectivity/connectivity_data.dart';
@@ -34,7 +34,7 @@ class ConnectivityListenerWidget extends StatefulWidget {
 }
 
 class _ConnectivityListenerWidgetState extends State<ConnectivityListenerWidget>
-    with Translator, SingleTickerProviderStateMixin {
+    with SingleTickerProviderStateMixin {
   /// we used GetIt to store the data in one class and only one instance.
   /// if we not use any way to provide us with the previous connection state.
   /// the view will always appear, when there is no change in the connection
@@ -42,7 +42,7 @@ class _ConnectivityListenerWidgetState extends State<ConnectivityListenerWidget>
   ConnectivityData connectivityData = GetIt.I<ConnectivityData>();
 
   late StreamSubscription<InternetConnectionStatus> _internetConnectionStream;
-  late StreamSubscription<ConnectivityResult> _connectivityStream;
+  late StreamSubscription<List<ConnectivityResult>> _connectivityStream;
 
   late AnimationController _controller;
   late Animation<double> _animation;
@@ -73,7 +73,6 @@ class _ConnectivityListenerWidgetState extends State<ConnectivityListenerWidget>
 
   @override
   Widget build(BuildContext context) {
-    initTranslator(context);
     _isConnectedToInternet()
         ? _controller.reverse().then((value) => changeVisible(false))
         : _controller.forward().then((value) => changeVisible(true));
@@ -123,30 +122,22 @@ class _ConnectivityListenerWidgetState extends State<ConnectivityListenerWidget>
 
   void _startConnectivityListener() {
     final connectivity = Connectivity();
-    _connectivityStream = connectivity.onConnectivityChanged.listen(
-      (ConnectivityResult result) async {
-        switch (result) {
-          case ConnectivityResult.wifi:
-            Developer.developerLog('connected throw wifi');
-            connectivityData.connectivityType =
-                ConnectivityType.connectedThrowWifi;
-            break;
-          case ConnectivityResult.mobile:
-            Developer.developerLog('connected throw mobile');
-            connectivityData.connectivityType =
-                ConnectivityType.connectedThrowMobile;
-            break;
-          case ConnectivityResult.none:
-            Developer.developerLog('not connected');
-            connectivityData.connectivityType = ConnectivityType.notConnected;
-            break;
-          default:
-            Developer.developerLog('not connected default case');
-            connectivityData.connectivityType = ConnectivityType.notConnected;
-            break;
-        }
-      } as void Function(List<ConnectivityResult> event)?,
-    ) as StreamSubscription<ConnectivityResult>;
+    _connectivityStream = connectivity.onConnectivityChanged.listen((results) {
+      final result = results.isEmpty ? ConnectivityResult.none : results.first;
+      switch (result) {
+        case ConnectivityResult.wifi:
+          Developer.developerLog('connected through wifi');
+          connectivityData.connectivityType =
+              ConnectivityType.connectedThrowWifi;
+        case ConnectivityResult.mobile:
+          Developer.developerLog('connected through mobile');
+          connectivityData.connectivityType =
+              ConnectivityType.connectedThrowMobile;
+        default:
+          Developer.developerLog('not connected');
+          connectivityData.connectivityType = ConnectivityType.notConnected;
+      }
+    });
   }
 
   void _stopConnectivityListener() {
@@ -198,11 +189,11 @@ class _ConnectivityListenerWidgetState extends State<ConnectivityListenerWidget>
 
   String _notConnectedMsg() =>
       widget.notConnectedMessage ??
-      translate(LocalizationKeys.noInternetConnection)!;
+      context.tr(LocalizationKeys.noInternetConnection);
 
   String _connectedMsg() =>
       widget.connectedMessage ??
-      translate(LocalizationKeys.connectionRestored)!;
+      context.tr(LocalizationKeys.connectionRestored);
 
   bool _isConnectedToInternet() => connectivityData.isConnectedToInternet;
 }
