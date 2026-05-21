@@ -68,3 +68,21 @@ extra: post)` and read arguments via `state.extra`. `lib/app.dart` wires it with
   `BaseStatefulScreenWidget` and implement `baseScreenBuild` (call
   `showLoading()` / `hideLoading()` as needed). `PostDetailsScreen` is the
   reference example. Simple screens can be plain `StatelessWidget`s.
+
+## Environments
+
+`AppConfig` (`lib/core/config/app_config.dart`) selects the environment at
+compile time from `--dart-define=ENV=dev|staging|prod` (default `dev`) and
+exposes the API `baseUrl`. It is registered in `lib/injection.dart` and read by
+the networking layer via `getIt<AppConfig>()`. Replace the placeholder base URLs
+with your real endpoints. Run a flavor with, e.g.,
+`flutter run --dart-define=ENV=staging`.
+
+## Theming
+
+`ThemeCubit` (`lib/core/theme/theme_cubit.dart`) holds the active `ThemeMode`,
+defaults to `ThemeMode.system`, and persists changes through
+`PreferencesManager`. `lib/app.dart` provides it and drives
+`MaterialApp.router`'s `themeMode`. Light and dark `ThemeData` live in
+`lib/utils/theme/app_theme.dart`. `PostsScreen`'s app-bar button
+(`cycleThemeMode`) demonstrates switching at runtime.
