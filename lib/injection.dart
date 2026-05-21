@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_starter_kit/apis/_base/dio_api_manager.dart';
+import 'package:flutter_starter_kit/core/config/app_config.dart';
 import 'package:flutter_starter_kit/feature/example_posts/data/posts_repository.dart';
 import 'package:flutter_starter_kit/preferences/preferences_manager.dart';
 import 'package:flutter_starter_kit/utils/connectivity/connectivity_data.dart';
@@ -12,6 +13,8 @@ final GetIt getIt = GetIt.instance;
 /// `runApp`. Group registrations by area and keep this the only place that
 /// wires the object graph.
 Future<void> setupDependencies() async {
+  getIt.registerSingleton<AppConfig>(AppConfig.fromEnvironment());
+
   // Core
   getIt.registerLazySingleton<PreferencesManager>(PreferencesManager.new);
   getIt.registerLazySingleton<DioApiManager>(

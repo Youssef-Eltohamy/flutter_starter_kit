@@ -26,13 +26,6 @@ class ApiKeys {
   static const googleMapsApiKey = 'AIzaSyC9KEnXSaS08f3r0pT1qVuEMhoKzLHi5_o';
 
   /// URLs
-  static const baseUrlProduction =
-      'https://oyn-gateway-c3wcsxgmhq-ew.a.run.app/';
-  static const baseUrlQc =
-      'https://oyn-gateway-qc.salmonsky-1edff179.westeurope.azurecontainerapps.io/';
-  static const baseUrlDev =
-      'https://oyn-gateway-dev.nicewater-75de7f47.westeurope.azurecontainerapps.io/';
-
   static const apiKeyUrl = 'api';
   static const baseApiUrl = '/$apiKeyUrl';
 
