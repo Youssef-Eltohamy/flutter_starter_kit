@@ -6,6 +6,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_starter_kit/apis/_base/dio_api_manager.dart';
 import 'package:flutter_starter_kit/core/app_platform.dart';
 import 'package:flutter_starter_kit/core/router/app_router.dart';
+import 'package:flutter_starter_kit/core/theme/theme_cubit.dart';
 import 'package:flutter_starter_kit/preferences/preferences_manager.dart';
 import 'package:flutter_starter_kit/res/app_colors.dart';
 import 'package:flutter_starter_kit/utils/locale/app_localization.dart';
@@ -35,6 +36,9 @@ class MyApp extends StatelessWidget {
             ),
           ),
         ),
+        BlocProvider<ThemeCubit>(
+          create: (context) => ThemeCubit(GetIt.I<PreferencesManager>()),
+        ),
       ],
       child: BlocBuilder<LocaleCubit, Locale>(
         builder: (context, state) {
@@ -51,7 +55,7 @@ class MyApp extends StatelessWidget {
                 debugShowCheckedModeBanner: false,
                 theme: AppTheme(state).themeDataLight,
                 darkTheme: AppTheme(state).themeDataDark,
-                themeMode: ThemeMode.light,
+                themeMode: context.watch<ThemeCubit>().state,
 
                 /// the list of our supported locals for our app
                 /// currently we support only 2 English and Arabic ...
