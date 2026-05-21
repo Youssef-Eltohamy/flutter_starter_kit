@@ -4,8 +4,10 @@ import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:flutter_starter_kit/apis/api_keys.dart';
+import 'package:flutter_starter_kit/core/config/app_config.dart';
 import 'package:flutter_starter_kit/preferences/preferences_manager.dart';
 import 'package:flutter_starter_kit/utils/build_type/build_type.dart';
+import 'package:get_it/get_it.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 
 class DioApiManager {
@@ -16,8 +18,7 @@ class DioApiManager {
   DioApiManager(this.preferenceManager);
 
   Dio get dioUnauthorized {
-    return DioOptions.dioInstance(optionsUnauthorized)
-      ..interceptors.clear()
+    return Dio(optionsUnauthorized)
       ..interceptors.addAll([
         _queuedInterceptorsWrapperUnauthorized,
         if (isDebugMode()) ...[
@@ -32,8 +33,7 @@ class DioApiManager {
   }
 
   Dio get dio {
-    return DioOptions.dioInstance(options)
-      ..interceptors.clear()
+    return Dio(options)
       ..interceptors.addAll([
         _queuedInterceptorsWrapper,
         if (isDebugMode()) ...[
@@ -139,15 +139,5 @@ class DioOptions extends BaseOptions {
   }
 
   @override
-  String get baseUrl {
-    return ApiKeys.baseUrlProduction;
-  }
-
-  static Dio? dio;
-
-  static Dio dioInstance(BaseOptions options) {
-    dio ??= Dio(options);
-
-    return dio!;
-  }
+  String get baseUrl => GetIt.I<AppConfig>().baseUrl;
 }
