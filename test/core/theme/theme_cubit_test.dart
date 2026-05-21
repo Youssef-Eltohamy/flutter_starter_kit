@@ -34,7 +34,7 @@ void main() {
   );
 
   blocTest<ThemeCubit, ThemeMode>(
-    'cycleThemeMode goes system -> light',
+    'cycleThemeMode: system -> light',
     setUp: () {
       when(prefs.getThemeMode).thenAnswer((_) async => ThemeMode.system);
       when(() => prefs.setThemeMode(any())).thenAnswer((_) async => true);
@@ -45,26 +45,30 @@ void main() {
   );
 
   blocTest<ThemeCubit, ThemeMode>(
-    'cycleThemeMode goes light -> dark',
+    'cycleThemeMode: light -> dark',
     setUp: () {
-      when(prefs.getThemeMode).thenAnswer((_) async => ThemeMode.light);
+      when(prefs.getThemeMode).thenAnswer((_) async => ThemeMode.system);
       when(() => prefs.setThemeMode(any())).thenAnswer((_) async => true);
     },
     build: () => ThemeCubit(prefs),
-    seed: () => ThemeMode.light,
-    act: (cubit) => cubit.cycleThemeMode(),
-    expect: () => [ThemeMode.dark],
+    act: (cubit) async {
+      await cubit.setThemeMode(ThemeMode.light);
+      await cubit.cycleThemeMode();
+    },
+    expect: () => [ThemeMode.light, ThemeMode.dark],
   );
 
   blocTest<ThemeCubit, ThemeMode>(
-    'cycleThemeMode goes dark -> system',
+    'cycleThemeMode: dark -> system',
     setUp: () {
-      when(prefs.getThemeMode).thenAnswer((_) async => ThemeMode.dark);
+      when(prefs.getThemeMode).thenAnswer((_) async => ThemeMode.system);
       when(() => prefs.setThemeMode(any())).thenAnswer((_) async => true);
     },
     build: () => ThemeCubit(prefs),
-    seed: () => ThemeMode.dark,
-    act: (cubit) => cubit.cycleThemeMode(),
-    expect: () => [ThemeMode.system, ThemeMode.dark],
+    act: (cubit) async {
+      await cubit.setThemeMode(ThemeMode.dark);
+      await cubit.cycleThemeMode();
+    },
+    expect: () => [ThemeMode.dark, ThemeMode.system],
   );
 }
