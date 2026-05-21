@@ -67,6 +67,23 @@ class AppTheme {
   }
 
   ThemeData get themeDataDark {
-    return ThemeData(brightness: Brightness.dark);
+    return ThemeData(
+      brightness: Brightness.dark,
+      colorScheme: const ColorScheme.dark(
+        primary: AppColors.primary,
+        onPrimary: AppColors.onPrimary,
+        secondary: AppColors.secondary,
+        surface: Color(0xFF121212),
+        onSurface: Color(0xFFE6E6E6),
+        error: AppColors.error,
+      ),
+      scaffoldBackgroundColor: const Color(0xFF121212),
+      appBarTheme: const AppBarTheme(
+        backgroundColor: Color(0xFF1E1E1E),
+        foregroundColor: Color(0xFFE6E6E6),
+        elevation: 0,
+        centerTitle: false,
+      ),
+    );
   }
 }
