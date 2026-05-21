@@ -115,9 +115,9 @@ class DioApiManager {
     );
   }
 
-  DioOptions options = DioOptions();
+  final DioOptions options = DioOptions();
 
-  DioOptions optionsUnauthorized = DioOptions();
+  final DioOptions optionsUnauthorized = DioOptions();
 
   Future<void> logOutNow() async {
     // GetIt.I<UserMangers>().signOut();

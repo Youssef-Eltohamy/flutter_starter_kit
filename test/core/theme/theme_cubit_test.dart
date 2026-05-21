@@ -32,4 +32,39 @@ void main() {
     expect: () => [ThemeMode.light],
     verify: (_) => verify(() => prefs.setThemeMode(ThemeMode.light)).called(1),
   );
+
+  blocTest<ThemeCubit, ThemeMode>(
+    'cycleThemeMode goes system -> light',
+    setUp: () {
+      when(prefs.getThemeMode).thenAnswer((_) async => ThemeMode.system);
+      when(() => prefs.setThemeMode(any())).thenAnswer((_) async => true);
+    },
+    build: () => ThemeCubit(prefs),
+    act: (cubit) => cubit.cycleThemeMode(),
+    expect: () => [ThemeMode.light],
+  );
+
+  blocTest<ThemeCubit, ThemeMode>(
+    'cycleThemeMode goes light -> dark',
+    setUp: () {
+      when(prefs.getThemeMode).thenAnswer((_) async => ThemeMode.light);
+      when(() => prefs.setThemeMode(any())).thenAnswer((_) async => true);
+    },
+    build: () => ThemeCubit(prefs),
+    seed: () => ThemeMode.light,
+    act: (cubit) => cubit.cycleThemeMode(),
+    expect: () => [ThemeMode.dark],
+  );
+
+  blocTest<ThemeCubit, ThemeMode>(
+    'cycleThemeMode goes dark -> system',
+    setUp: () {
+      when(prefs.getThemeMode).thenAnswer((_) async => ThemeMode.dark);
+      when(() => prefs.setThemeMode(any())).thenAnswer((_) async => true);
+    },
+    build: () => ThemeCubit(prefs),
+    seed: () => ThemeMode.dark,
+    act: (cubit) => cubit.cycleThemeMode(),
+    expect: () => [ThemeMode.system, ThemeMode.dark],
+  );
 }
