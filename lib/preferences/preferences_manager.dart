@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_starter_kit/preferences/preferences_keys.dart';
 import 'package:flutter_starter_kit/utils/preferences/preferences_utils.dart';
 
@@ -200,5 +201,22 @@ class PreferencesManager {
 
   Future<bool> getB2bState() async {
     return await PreferencesUtils.getBool(PreferencesKeys.b2bCompleted.name);
+  }
+
+  Future<bool> setThemeMode(ThemeMode mode) async {
+    return PreferencesUtils.setString(
+      PreferencesKeys.themeMode.name,
+      mode.name,
+    );
+  }
+
+  Future<ThemeMode> getThemeMode() async {
+    final value = await PreferencesUtils.getString(
+      PreferencesKeys.themeMode.name,
+    );
+    return ThemeMode.values.firstWhere(
+      (mode) => mode.name == value,
+      orElse: () => ThemeMode.system,
+    );
   }
 }

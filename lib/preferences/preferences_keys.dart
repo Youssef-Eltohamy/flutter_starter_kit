@@ -14,5 +14,6 @@ enum PreferencesKeys {
   mainAddressLat,
   mainAddressLng,
   b2bCompleted,
-  cartItemList
+  cartItemList,
+  themeMode,
 }
