@@ -3,23 +3,24 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_starter_kit/preferences/preferences_manager.dart';
 
 /// Holds the active [ThemeMode] (system/light/dark), loads the persisted choice
-/// on startup, and persists changes.
+/// on startup, and persists changes. A user's explicit choice always wins over
+/// the asynchronous startup load.
 class ThemeCubit extends Cubit<ThemeMode> {
   ThemeCubit(this._preferences) : super(ThemeMode.system) {
     _load();
   }
 
   final PreferencesManager _preferences;
+  bool _userChanged = false;
 
   Future<void> _load() async {
-    // Only apply the persisted value if the state has not been changed by a
-    // manual call (i.e. it still equals the constructor-time default).
-    if (state != ThemeMode.system) return;
     final mode = await _preferences.getThemeMode();
-    if (!isClosed && state == ThemeMode.system) emit(mode);
+    if (_userChanged || isClosed) return;
+    emit(mode);
   }
 
   Future<void> setThemeMode(ThemeMode mode) async {
+    _userChanged = true;
     emit(mode);
     await _preferences.setThemeMode(mode);
   }
