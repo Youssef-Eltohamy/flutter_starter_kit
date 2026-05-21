@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_starter_kit/core/router/app_routes.dart';
+import 'package:flutter_starter_kit/core/theme/theme_cubit.dart';
 import 'package:flutter_starter_kit/feature/example_posts/data/posts_repository.dart';
 import 'package:flutter_starter_kit/feature/example_posts/presentation/cubit/posts_cubit.dart';
 import 'package:flutter_starter_kit/feature/example_posts/presentation/cubit/posts_state.dart';
@@ -18,7 +19,16 @@ class PostsScreen extends StatelessWidget {
     return BlocProvider(
       create: (_) => PostsCubit(getIt<PostsRepository>())..loadPosts(),
       child: Scaffold(
-        appBar: AppBar(title: const Text('Posts (example)')),
+        appBar: AppBar(
+          title: const Text('Posts (example)'),
+          actions: [
+            IconButton(
+              icon: const Icon(Icons.brightness_6_outlined),
+              tooltip: 'Toggle theme',
+              onPressed: () => context.read<ThemeCubit>().cycleThemeMode(),
+            ),
+          ],
+        ),
         body: BlocBuilder<PostsCubit, PostsState>(
           builder: (context, state) {
             switch (state.status) {
