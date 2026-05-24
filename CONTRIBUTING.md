@@ -31,3 +31,15 @@ the logic genuinely needs it.
 
 - `snake_case` files, `UpperCamelCase` types, single quotes, trailing commas.
 - Keep files small and focused; extract a widget/class when one grows unwieldy.
+
+## Testing
+
+- **Unit tests** for pure logic: repositories with a mocked `Dio`
+  (`mocktail`), cubits with `bloc_test` + a mocked repository. See
+  `test/feature/example_posts/`.
+- **Widget tests** use the `pumpApp` helper (`test/support/pump_app.dart`),
+  which wraps a widget in a minimal `MaterialApp`. Mock `get_it` dependencies by
+  registering a fake in `setUp` and calling `getIt.reset()` in `tearDown` — see
+  `test/feature/example_posts/posts_screen_test.dart`.
+- Run `flutter test`; for a coverage report run `flutter test --coverage`
+  (outputs `coverage/lcov.info`). CI runs coverage on every push/PR.
